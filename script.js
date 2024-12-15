@@ -13,6 +13,7 @@ const retryBtn = document.getElementById('retry-btn');
 const retryFailureBtn = document.getElementById('retry-failure-btn');
 let score = 0;
 let username = '';
+let isGameActive = false; // ゲームのアクティブ状態を管理
 
 // ダブルタップズームの無効化（タップイベントには影響しない）
 document.addEventListener('touchstart', (event) => {
@@ -40,6 +41,7 @@ startBtn.addEventListener('click', () => {
 // カウントダウンとゲーム開始
 function startCountdown() {
   let time = 3;
+  isGameActive = false; // ゲーム中ではない
   countdown.textContent = time;
   const interval = setInterval(() => {
     time--;
@@ -55,6 +57,7 @@ function startCountdown() {
 // ゲームロジック
 function startGame() {
   countdown.textContent = "スタート！";
+  isGameActive = true; // ゲームが開始
   let timeLeft = 10;
   const gameInterval = setInterval(() => {
     timeLeft--;
@@ -64,12 +67,19 @@ function startGame() {
     }
   }, 1000);
 
-  kazuya.addEventListener('touchstart', eatPudding); // タッチ対応
+  kazuya.addEventListener('touchstart', handleTouch); // タッチ対応
+}
+
+// タップ処理
+function handleTouch(event) {
+  if (isGameActive) {
+    event.preventDefault(); // タッチイベントのデフォルト動作を無効化
+    eatPudding();
+  }
 }
 
 // プリンを食べる処理
-function eatPudding(event) {
-  event.preventDefault(); // タッチイベントのデフォルト動作を無効化
+function eatPudding() {
   score++;
   counter.textContent = `${score}個`;
 
@@ -86,14 +96,15 @@ function eatPudding(event) {
 
 // ゲーム終了
 function endGame() {
+  isGameActive = false; // ゲーム終了
   gameScreen.style.display = 'none';
   bgm.pause(); // BGM停止
   bgm.currentTime = 0; // 再生位置をリセット
 
-  if (score >= 70) {
+  if (score >= 70) { // 成功条件を70個に変更
     resultScreen.style.display = 'flex';
     finalScore.textContent = `あなたのスコア: ${score}個`;
-    resultMessage.textContent = "いっぱい食べられたね！";
+    resultMessage.textContent = "いっぱい食べられたね！"; // 成功時のメッセージ
     saveRanking(score, username);
   } else {
     failureScreen.style.display = 'flex';
