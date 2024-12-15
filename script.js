@@ -101,7 +101,7 @@ function endGame() {
   bgm.pause(); // BGM停止
   bgm.currentTime = 0; // 再生位置をリセット
 
-  if (score >= 70) { // 成功条件を70個に変更
+  if (score >= 100) { // 成功条件を70個に変更
     resultScreen.style.display = 'flex';
     finalScore.textContent = `あなたのスコア: ${score}個`;
     resultMessage.textContent = "いっぱい食べられたね！"; // 成功時のメッセージ
