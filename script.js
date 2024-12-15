@@ -14,14 +14,11 @@ const retryFailureBtn = document.getElementById('retry-failure-btn');
 let score = 0;
 let username = '';
 
-// ダブルタップズームの無効化
-let lastTouchEnd = 0;
-document.addEventListener('touchend', (event) => {
-  const now = new Date().getTime();
-  if (now - lastTouchEnd <= 300) {
+// ダブルタップズームの無効化（タップイベントには影響しない）
+document.addEventListener('touchstart', (event) => {
+  if (event.touches.length > 1) {
     event.preventDefault();
   }
-  lastTouchEnd = now;
 });
 
 // BGMの音量設定
@@ -67,11 +64,12 @@ function startGame() {
     }
   }, 1000);
 
-  kazuya.addEventListener('click', eatPudding);
+  kazuya.addEventListener('touchstart', eatPudding); // タッチ対応
 }
 
 // プリンを食べる処理
-function eatPudding() {
+function eatPudding(event) {
+  event.preventDefault(); // タッチイベントのデフォルト動作を無効化
   score++;
   counter.textContent = `${score}個`;
 
