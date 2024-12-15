@@ -93,7 +93,7 @@ function endGame() {
   if (score >= 50) {
     resultScreen.style.display = 'flex';
     finalScore.textContent = `あなたのスコア: ${score}個`;
-    resultMessage.textContent = "素晴らしい！最高の結果です！";
+    resultMessage.textContent = "いっぱい食べられたね！";
     saveRanking(score, username);
   } else {
     failureScreen.style.display = 'flex';
