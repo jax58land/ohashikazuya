@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>プリン連打ゲーム</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- スタート画面 -->
+  <div id="start-screen">
+    <img src="start-screen.jpg" alt="スタート画面" id="start-image">
+    <input type="text" id="username" placeholder="ユーザー名を入力">
+    <button id="start-btn">ゲーム開始</button>
+  </div>
+
+  <!-- プレイ画面 -->
+  <div id="game-screen" style="display: none;">
+    <h2 id="countdown">準備中...</h2>
+    <div id="game-area">
+      <img id="kazuya" src="kazuya1.jpg" alt="大橋和也">
+      <div id="counter">0個</div>
+    </div>
+  </div>
+
+  <!-- 結果画面 -->
+  <div id="result-screen" style="display: none;">
+    <img src="result-screen.jpg" alt="結果画面" id="result-image">
+    <h1>結果発表</h1>
+    <p id="result-message"></p>
+    <div id="final-score"></div>
+    <h2>ランキング</h2>
+    <ul id="ranking"></ul>
+    <button id="retry-btn">再挑戦</button>
+  </div>
+
+  <!-- 失敗画面 -->
+  <div id="failure-screen" style="display: none;">
+    <img src="failure.jpg" alt="失敗画面" id="failure-image">
+    <h1>スコアが足りません！</h1>
+    <button id="retry-failure-btn">再挑戦</button>
+  </div>
+
+  <!-- BGM -->
+  <audio id="bgm" src="bgm.mp3" loop></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
