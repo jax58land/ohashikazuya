@@ -90,7 +90,7 @@ function endGame() {
   bgm.pause(); // BGM停止
   bgm.currentTime = 0; // 再生位置をリセット
 
-  if (score >= 50) {
+  if (score >= 70) {
     resultScreen.style.display = 'flex';
     finalScore.textContent = `あなたのスコア: ${score}個`;
     resultMessage.textContent = "いっぱい食べられたね！";
