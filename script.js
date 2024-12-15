@@ -14,6 +14,16 @@ const retryFailureBtn = document.getElementById('retry-failure-btn');
 let score = 0;
 let username = '';
 
+// ダブルタップズームの無効化
+let lastTouchEnd = 0;
+document.addEventListener('touchend', (event) => {
+  const now = new Date().getTime();
+  if (now - lastTouchEnd <= 300) {
+    event.preventDefault();
+  }
+  lastTouchEnd = now;
+});
+
 // BGMの音量設定
 bgm.volume = 0.2;
 
