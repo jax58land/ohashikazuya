@@ -8,6 +8,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    touch-action: manipulation; /* タッチ操作の制限 */
   }
   
   @font-face {
@@ -62,6 +63,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    user-select: none; /* テキスト選択防止 */
+    -webkit-tap-highlight-color: transparent; /* iOSのタップハイライトを無効化 */
   }
   
   #kazuya {
